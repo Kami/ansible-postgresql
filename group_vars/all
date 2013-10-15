@@ -1,0 +1,4 @@
+postgresql:
+  version: 9.2
+  repo: 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'
+  install_development_headers: true

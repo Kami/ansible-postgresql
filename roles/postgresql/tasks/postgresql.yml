@@ -1,0 +1,22 @@
+---
+- name: Install Postgresql server and client
+  apt: pkg=${item}-${postgresql.version} state=installed update-cache=yes
+  register: postgresql_install
+  with_items:
+    - postgresql
+  tags:
+    - packages
+
+- name: Install development header files
+  apt: pkg=${item} state=installed update-cache=yes
+  when: postgresql.install_development_headers == true
+  with_items:
+    - libpq-dev
+  tags:
+    - packages
+
+- name: Install PostgreSQL config file
+  template: src=postgresql.conf dest=/etc/postgresql/${postgresql.version}/main/postgresql.conf
+  notify: restart postgresql
+  tags:
+    - configuration
