@@ -1,0 +1,12 @@
+- name: Install pgbouncer
+  apt: pkg=pgbouncer state=installed update-cache=yes
+
+- name: Install pgbouncer config
+  action: template src=pgbouncer.ini.j2 dest=/etc/pgbouncer/pgbouncer.ini mode=0600 owner=${pgbouncer.user} group=${pgbouncer.group}
+  notify:
+    - restart pgbouncer
+
+- name: Enable pgbouncer
+  lineinfile: dest=/etc/default/pgbouncer regexp=^START=0$ line=START=1
+  notify:
+    - restart pgbouncer

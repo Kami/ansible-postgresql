@@ -14,3 +14,19 @@ postgresql:
     checkpoint_completion_target: 0.5
 
     effective_cache_size: 128MB
+
+pgbouncer:
+  user: postgres
+  group: postgres
+
+  config:
+    database_host: 127.0.0.1
+    database_port: 5432
+
+    listen_addr: 127.0.0.1
+    listen_port: 6432
+
+    user: postgres
+
+    auth_type: md5
+    auth_file: /etc/pgbouncer/userlist.txt
