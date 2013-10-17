@@ -3,6 +3,9 @@ postgresql:
   repo: 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'
   install_development_headers: true
 
+  user: postgres
+  group: postgres
+
   config:
     shared_buffers: 24MB
     work_mem: 1MB

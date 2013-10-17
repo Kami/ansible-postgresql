@@ -16,7 +16,8 @@
     - packages
 
 - name: Install PostgreSQL config file
-  template: src=postgresql.conf dest=/etc/postgresql/${postgresql.version}/main/postgresql.conf
-  notify: restart postgresql
+  template: src=postgresql.conf dest=/etc/postgresql/${postgresql.version}/main/postgresql.conf owner=${postgresql.user} group=${postgresql.group}
+  notify:
+    - restart postgresql
   tags:
     - configuration
