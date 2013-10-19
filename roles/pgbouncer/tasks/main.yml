@@ -3,7 +3,8 @@
   apt: pkg=pgbouncer state=installed update-cache=yes
 
 - name: Install pgbouncer config
-  action: template src=pgbouncer.ini.j2 dest=/etc/pgbouncer/pgbouncer.ini mode=0600 owner=${pgbouncer.user} group=${pgbouncer.group}
+  action: template src=pgbouncer.ini.j2 dest=/etc/pgbouncer/pgbouncer.ini
+          mode=0600 owner={{ pgbouncer.user }} group={{ pgbouncer.group }}
   notify:
     - restart pgbouncer
 

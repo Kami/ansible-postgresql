@@ -11,6 +11,6 @@
     - apt
 
 - name: Add PostgreSQL repository
-  apt_repository: repo='${postgresql.repo}' state=present
+  apt_repository: repo='{{ postgresql.repo }}' state=present
   tags:
     - apt
