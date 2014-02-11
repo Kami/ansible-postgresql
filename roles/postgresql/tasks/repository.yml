@@ -2,15 +2,18 @@
 # Needed for add-apt-repository
 - name: Install python-software-properties
   apt: pkg=python-software-properties state=installed update-cache=yes
+  sudo: yes
   tags:
     - apt
 
 - name: Add repository key
   apt_key: data="{{ lookup('file', 'ACCC4CF8.asc') }}"  state=present
+  sudo: yes
   tags:
     - apt
 
 - name: Add PostgreSQL repository
   apt_repository: repo='{{ postgresql.repo }}' state=present
+  sudo: yes
   tags:
     - apt
